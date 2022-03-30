@@ -1,5 +1,4 @@
-from email.policy import default
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -27,6 +26,20 @@ def index():
 def listarProdutos():
     return render_template('produtos.html')
 
-@app.route("/produtos/adicionar")
+@app.route("/produtos/adicionar", methods=['POST', 'GET'])
 def adicionarProdutos():
-    return render_template('form.html')
+
+    if request.method == "POST":
+        produto_name = request.form['produto']
+        new_produto = Estoque(produto=produto_name)
+        
+        #Mandar para o database
+        try:
+            db.session.add(new_produto)
+            db.session.commit()
+            return redirect("/produtos/adicionar")
+        except:
+            return "Ocorreu um erro ao adicionar o produto!"
+    else:
+        produtos = Estoque.query.order_by(Estoque.data_cadastro)
+        return render_template('form.html', produtos=produtos)

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Produtos</title>
+</head>
+<body>
+    <h1>Adicionar Produtos</h1>
+    <form action="/produtos/adicionar" method="POST">
+        <input type="text" placeholder="Produto" name="produto">
+        <input type="submit" value="Add Produto">
+    </form>
+
+    {% for produto in produtos %}
+    <h4>{{ produto.produto }}</h4>
+    {% endfor %}
+</body>
+</html>
