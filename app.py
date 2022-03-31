@@ -1,3 +1,4 @@
+from email.policy import default
 from turtle import title
 from flask import Flask, redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
@@ -12,7 +13,11 @@ db = SQLAlchemy(app)
 class Estoque(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(200), nullable=False) #200 é o maximo de caracteres
-    data_cadastro = db.Column(db.DateTime, default=datetime.utcnow)
+    peso = db.Column(db.String(200), nullable=True, default="-")
+    custo = db.Column(db.Float, nullable=True, default=0)
+    preco = db.Column(db.Float, nullable=False, default=0)
+    data_cadastro = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    quantidade = db.Column(db.Integer, nullable=False, default=0)
 
     #Função para retornar uma string quando adicionar algo ao banco
     def __repr__(self):
@@ -33,13 +38,13 @@ def adicionarProdutos():
 
     if request.method == "POST":
         produto_name = request.form['nome']
-        new_produto = Estoque(produto=produto_name)
+        new_produto = Estoque(nome=produto_name)
         
         #Mandar para o database
         try:
             db.session.add(new_produto)
             db.session.commit()
-            return redirect("/produtos")
+            return redirect("/produtos/")
         except:
             return "Ocorreu um erro ao adicionar o produto!"
     else:
