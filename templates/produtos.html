@@ -2,9 +2,31 @@
 
 {% block content %}
     
-    <ul>
-        {% for produto in produtos %}
-            <li>{{ produto.nome }}</li>
-        {% endfor %}
-    </ul>
+
+
+    <table id="table-produtos" class="display">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Produto</th>
+                <th>Peso</th>
+                <th>Custo</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Data de Cadastro</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in lista_produtos %}
+                <tr>
+                    <td>{{ produto.id }}</td>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.peso }}</td>
+                    <td>{{ produto.custo }}</td>
+                    <td>{{ produto.preco }}</td>
+                    <td>{{ produto.quantidade }}</td>
+                    <td>{{ produto.data_cadastro }}</td>
+                </tr>
+            {% endfor %}
+    </table>
 {% endblock %}
