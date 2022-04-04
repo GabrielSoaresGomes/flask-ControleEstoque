@@ -38,7 +38,11 @@ def adicionarProdutos():
 
     if request.method == "POST":
         produto_name = request.form['nome']
-        new_produto = Estoque(nome=produto_name)
+        produto_peso = request.form['peso']
+        produto_custo = request.form['custo']
+        produto_preco = request.form['preco']
+        produto_quantidade = request.form['quantidade']
+        new_produto = Estoque(nome=produto_name, peso=produto_peso, custo=produto_custo, preco=produto_preco, quantidade=produto_quantidade)
         
         #Mandar para o database
         try:
