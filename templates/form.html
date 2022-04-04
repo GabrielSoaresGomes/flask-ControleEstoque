@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Produtos</title>
-</head>
-<body>
-    <h1>Adicionar Produtos</h1>
-    <form action="/produtos/adicionar" method="POST">
-        <input type="text" placeholder="Produto" name="nome">
-        <input type="number" placeholder="Peso" name="peso">
-        <input type="number" placeholder="Custo" name="custo">
-        <input type="number" placeholder="Preço" name="preco">
-        <input type="number" placeholder="Quantidade" name="quantidade">
-        <input type="submit" value="Add Produto">
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+    {% block content %}
+
+        <form class="container w-25 d-flex flex-column" action="/produtos/adicionar" method="POST">
+            <input class=" my-2" type="text" placeholder="Produto" name="nome">
+            <input class=" my-2" type="number" placeholder="Peso" name="peso">
+            <input class=" my-2" type="number" placeholder="Custo" name="custo">
+            <input class=" my-2" type="number" placeholder="Preço" name="preco">
+            <input class=" my-2" type="number" placeholder="Quantidade" name="quantidade">
+            <input class=" my-2" type="submit" value="Add Produto">
+        </form>
+
+    {% endblock %}

@@ -53,4 +53,4 @@ def adicionarProdutos():
             return "Ocorreu um erro ao adicionar o produto!"
     else:
         produtos = Estoque.query.order_by(Estoque.data_cadastro)
-        return render_template('form.html', produtos=produtos)
+        return render_template('form.html', produtos=produtos, title="Adicionar Produtos", page_title="Adicionar Produtos")
